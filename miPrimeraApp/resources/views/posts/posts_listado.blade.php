@@ -16,6 +16,6 @@
         </style>
     </head>
     <body class="antialiased">
-                <p>Listado de posts</p>
+            <p>Listado de posts</p>
     </body>
 </html>
