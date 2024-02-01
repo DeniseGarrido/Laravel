@@ -2,7 +2,8 @@
 
 <head>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet">
+        <title>
         @yield('titulo')
     </title>
 </head>

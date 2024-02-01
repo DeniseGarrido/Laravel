@@ -6,7 +6,7 @@ Inicio Blog
 
 @section('contenido')
 <h1>Página de inicio</h1>
-<p>Bienvenido al blog</p>
+<p>Bienvenido/a al blog</p>
 @endsection
 
 
