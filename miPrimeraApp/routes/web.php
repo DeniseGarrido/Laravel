@@ -15,12 +15,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('inicio');
-});
+})->name('inicio');
 
 Route::get('/blog/posts', function () {
-    return view('posts_listado');
-});
+    return view('posts.posts_listado');
+})->name('posts_listado');
 
-Route::get('/posts_ficha/{id}', function ($id) {
-    return view('posts_ficha', ['id' => $id]);
-})->where('id', '[0-9]+');
+Route::get('/posts_ficha/{id?}', function ($id) {
+    return view('posts.posts_ficha', ['id' => $id]);
+})->where('id', '[0-9]+')->name('posts_ficha');
