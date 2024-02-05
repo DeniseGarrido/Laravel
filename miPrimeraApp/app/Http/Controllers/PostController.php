@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class PostController extends Controller
 {
@@ -19,7 +20,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        return 'Nuevo post';
+        return Redirect::route('inicio');
+        //http://127.0.0.1:8000/posts/crear
     }
 
     /**
@@ -43,7 +45,8 @@ class PostController extends Controller
      */
     public function edit(string $id)
     {
-        return 'Edición de post';
+        return Redirect::route('inicio');
+       //http://127.0.0.1:8000/posts/2/editar
     }
 
     /**

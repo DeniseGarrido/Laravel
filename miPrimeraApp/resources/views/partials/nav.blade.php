@@ -11,3 +11,6 @@
         </ul>
     </div>
 </nav>
+<div class="fecha-actual" style="text-align: right">
+    {{ fechaActual('d/m/Y') }}
+</div>

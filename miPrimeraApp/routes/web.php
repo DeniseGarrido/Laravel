@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('index');
+    return view('inicio');
 })->name('inicio');
 
 /* Route::get('/blog/posts', function () {
