@@ -6,7 +6,7 @@
                 <a class="nav-link" href="{{ route('inicio') }}" style="color: rgb(184, 184, 184)">Inicio </span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('posts_listado') }}" style="color: rgb(184, 184, 184)">Listado de posts</a>
+                <a class="nav-link" href="{{ route('posts.index') }}" style="color: rgb(184, 184, 184)">Listado de posts</a>
             </li>
         </ul>
     </div>
