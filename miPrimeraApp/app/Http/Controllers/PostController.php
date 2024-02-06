@@ -20,6 +20,7 @@ class PostController extends Controller
     public function create()
     {
         return 'Nuevo post';
+        //http://127.0.0.1:8000/posts/crear
     }
 
     /**
@@ -44,6 +45,7 @@ class PostController extends Controller
     public function edit(string $id)
     {
         return 'Edición de post';
+        // http://127.0.0.1:8000/posts/2/editar
     }
 
     /**
