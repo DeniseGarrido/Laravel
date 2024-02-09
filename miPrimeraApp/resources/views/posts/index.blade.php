@@ -1,19 +1,25 @@
 @extends('plantilla')
 
 @section('titulo')
-<p>Listado de posts</p>
+    Listado de posts
 @endsection
 
 @section('contenido')
 <div>
     <h1>Listado de posts</h1>
+    <hr>
     <ul>
         @foreach ($posts as $post)
             <li>
-                {{ $post->titulo }} <a href="{{ route('posts.show', $post->id) }}" class="btn btn-primary">Ver ficha</a>
+                {{ $post->titulo }} <br> <a href="{{ route('posts.show', $post->id) }}" class="btn btn-info" style="margin-top: 1%">Ver ficha</a>
+                <form action="{{ route('posts.destroy', $post->id) }}" method="POST">
+                    @method('DELETE')
+                    @csrf
+                    <button class="btn btn-danger" style="margin-top: 1%">Borrar</button>
+                   </form>
             </li>
+            <hr>
         @endforeach
     </ul>
-    {{ $posts->links() }}
 </div>
 @endsection

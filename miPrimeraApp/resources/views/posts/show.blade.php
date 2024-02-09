@@ -1,7 +1,7 @@
 @extends('plantilla')
 
 @section('titulo')
-    <p>{{ $post->titulo }}</p>
+    {{ $post->titulo }}
 @endsection
 
 @section('contenido')

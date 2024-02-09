@@ -67,6 +67,40 @@ class PostController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $post = Post::findOrFail($id)->delete();
+        $posts = Post::get();
+        return view('posts.index', compact('posts'));
+    }
+
+    /**
+     * Método creado a mano que hacemos para insertar una prueba aleatoria.
+     */
+    public function nuevoPrueba() // http://127.0.0.1:8002/nuevo-prueba
+    {
+    $titulo = "Título " . rand();
+    $contenido = "Contenido " . rand();
+
+    $post = new Post();
+    $post->titulo = $titulo;
+    $post->contenido = $contenido;
+    $post->save();
+
+    return redirect()->route('posts.index');
+    }
+
+
+public function editarPrueba(string $id){
+
+    $post = Post::findOrFail($id);
+
+    $titulo = "Título " . rand();
+    $contenido = "Contenido " . rand();
+
+    $post->titulo = $titulo;
+    $post->contenido = $contenido;
+
+    $post->save();
+
+    return redirect()->route('posts.index');
     }
 }
