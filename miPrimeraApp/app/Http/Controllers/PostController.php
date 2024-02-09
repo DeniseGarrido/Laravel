@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
+use App\Models\Post;
+
+
 class PostController extends Controller
 {
     /**
@@ -12,7 +15,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        return view('posts.index');
+        $posts = Post::orderBy('titulo', 'asc')->paginate(5); //ordenar por titulo
+        return view('posts.index', compact('posts'));
     }
 
     /**
@@ -37,7 +41,8 @@ class PostController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $post = Post::findOrFail($id);
+        return view('posts.show', compact('post'));
     }
 
     /**

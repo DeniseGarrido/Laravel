@@ -12,5 +12,5 @@
     </div>
 </nav>
 <div class="fecha-actual" style="text-align: right">
-    {{ fechaActual('d/m/Y') }}
+    {{ fechaActual('d/m/Y') }} <!--composer dump-autoload si falla-->
 </div>
