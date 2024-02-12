@@ -32,3 +32,16 @@ Route::resource('posts', PostController::class)->only(['index', 'show', 'create'
 Route::get('/nuevo-prueba', [PostController::class, 'nuevoPrueba']);
 Route::get('/editar-prueba/{id}', [PostController::class, 'editarPrueba']);
 
+use App\Models\Usuario;
+use App\Models\Post;
+
+
+Route::get('relacionPrueba', function() {
+    $usuario = Usuario::findOrFail(1);
+    $post = new Post();
+    $post->titulo = "Titulo del post " . rand();
+    $post->contenido = "Contenido del post";
+    $post->autor()->associate($usuario);
+    $post->save();
+    return redirect()->route('post.index');
+});

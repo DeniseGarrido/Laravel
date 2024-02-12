@@ -5,12 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Post extends Model
+class Usuario extends Model
 {
-    //use HasFactory;
-
-    public function usuario()
+    protected $table = 'usuarios';
+    public function posts()
     {
-        return $this->belongsTo('App\Models\Usuario');
+        return $this->hasMany('App\Models\Post');
     }
 }

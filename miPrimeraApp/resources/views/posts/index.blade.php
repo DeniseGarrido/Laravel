@@ -11,12 +11,13 @@
     <ul>
         @foreach ($posts as $post)
             <li>
-                {{ $post->titulo }} <br> <a href="{{ route('posts.show', $post->id) }}" class="btn btn-info" style="margin-top: 1%">Ver ficha</a>
+                {{ $post->titulo }} ({{ $post->usuario->login }}) <br>
+                <a href="{{ route('posts.show', $post->id) }}" class="btn btn-info" style="margin-top: 1%">Ver ficha</a>
                 <form action="{{ route('posts.destroy', $post->id) }}" method="POST">
                     @method('DELETE')
                     @csrf
                     <button class="btn btn-danger" style="margin-top: 1%">Borrar</button>
-                   </form>
+                </form>
             </li>
             <hr>
         @endforeach
