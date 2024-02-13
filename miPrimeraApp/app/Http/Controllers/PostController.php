@@ -15,7 +15,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::orderBy('titulo', 'asc')->paginate(5); //ordenar por titulo
+        $posts = Post::orderBy('titulo', 'asc')->simplepaginate(5); //ordenar por titulo
         return view('posts.index', compact('posts'));
     }
 

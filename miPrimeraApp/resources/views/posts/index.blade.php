@@ -20,7 +20,12 @@
                 </form>
             </li>
             <hr>
-        @endforeach
-    </ul>
-</div>
-@endsection
+            @endforeach
+        </ul>
+
+        <!-- Renderizar enlaces de paginación -->
+        <div>
+            {{ $posts->links() }}
+        </div>
+    </div>
+    @endsection
