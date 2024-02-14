@@ -8,6 +8,9 @@
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('posts.index') }}" style="color: rgb(184, 184, 184)">Listado de posts</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('posts.create') }}" style="color: rgb(184, 184, 184)">Añadir un post</a>
+            </li>
         </ul>
     </div>
 </nav>

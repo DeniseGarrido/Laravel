@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
 use App\Models\Post;
+use App\Models\Usuario;
 
 
 class PostController extends Controller
@@ -24,7 +25,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        return 'Nuevo post';
+        $usuarios = Usuario::get();
+        return view('posts.create', compact('usuarios'));
         //http://127.0.0.1:8000/posts/crear
     }
 
@@ -33,7 +35,12 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $post = new post();
+        $post->titulo = $request->get('titulo');
+        $post->contenido = $request->get('contenido');
+        $post->usuario()->associate(Usuario::get()->first());
+        $post->save();
+        return redirect()->route('posts.index');
     }
 
     /**
@@ -77,30 +84,31 @@ class PostController extends Controller
      */
     public function nuevoPrueba() // http://127.0.0.1:8002/nuevo-prueba
     {
-    $titulo = "Título " . rand();
-    $contenido = "Contenido " . rand();
+        $titulo = "Título " . rand();
+        $contenido = "Contenido " . rand();
 
-    $post = new Post();
-    $post->titulo = $titulo;
-    $post->contenido = $contenido;
-    $post->save();
+        $post = new Post();
+        $post->titulo = $titulo;
+        $post->contenido = $contenido;
+        $post->save();
 
-    return redirect()->route('posts.index');
+        return redirect()->route('posts.index');
     }
 
 
-public function editarPrueba(string $id){
+    public function editarPrueba(string $id){
 
-    $post = Post::findOrFail($id);
+        $post = Post::findOrFail($id);
 
-    $titulo = "Título " . rand();
-    $contenido = "Contenido " . rand();
+        $titulo = "Título " . rand();
+        $contenido = "Contenido " . rand();
 
-    $post->titulo = $titulo;
-    $post->contenido = $contenido;
+        $post->titulo = $titulo;
+        $post->contenido = $contenido;
 
-    $post->save();
+        $post->save();
 
-    return redirect()->route('posts.index');
+        return redirect()->route('posts.index');
     }
+
 }
