@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Redirect;
 use App\Models\Post;
 use App\Models\Usuario;
 
+use App\Http\Requests\PostRequest; //para que se validen los errores del form
+
 
 class PostController extends Controller
 {
@@ -33,7 +35,7 @@ class PostController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(PostRequest $request)
     {
         $post = new post();
         $post->titulo = $request->get('titulo');
