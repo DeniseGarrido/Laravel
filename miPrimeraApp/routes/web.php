@@ -28,9 +28,9 @@ Route::get('/posts_ficha/{id?}', function ($id) {
 
 use App\Http\Controllers\PostController;
 
-Route::resource('posts', PostController::class)->only(['index', 'show', 'create', 'edit', 'destroy', 'store']);
+Route::resource('posts', PostController::class)->only(['index', 'show', 'create', 'edit', 'destroy', 'store', 'update']);
 Route::get('/nuevo-prueba', [PostController::class, 'nuevoPrueba']);
-Route::get('/editar-prueba/{id}', [PostController::class, 'editarPrueba']);
+Route::get('/edit/{id}', [PostController::class, 'edit']);
 
 use App\Models\Usuario;
 use App\Models\Post;

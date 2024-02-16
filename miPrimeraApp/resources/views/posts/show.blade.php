@@ -16,6 +16,12 @@
             <input type="submit" class="btn btn-danger" value="Borrar post" />
         </form>
 
+        <!--BOTON EDITAR POST OPCIONAL EJ2 PT 6-->
+        <form action="{{ route('posts.edit', ['post' => $post->id]) }}" method="GET">
+            @csrf
+            <input type="submit" class="btn btn-warning" value="Editar post" />
+        </form>
+
         <p><a href="{{ route('posts.index') }}">Volver al listado de posts</a></p>
 
     </div>

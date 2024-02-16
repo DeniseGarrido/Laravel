@@ -59,8 +59,8 @@ class PostController extends Controller
      */
     public function edit(string $id)
     {
-        return 'Edición de post';
-        // http://127.0.0.1:8000/posts/2/editar
+        $post = Post::findOrFail($id);
+        return view('posts.edit', compact('post'));
     }
 
     /**
@@ -68,7 +68,17 @@ class PostController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'titulo' => 'required|min:5',
+            'contenido' => 'required|min:50',
+        ]);
+
+        $post = Post::findOrFail($id);
+        $post->titulo = $request->titulo;
+        $post->contenido = $request->contenido;
+        $post->save();
+
+        return redirect()->route('posts.show', ['post' => $post->id]);
     }
 
     /**
