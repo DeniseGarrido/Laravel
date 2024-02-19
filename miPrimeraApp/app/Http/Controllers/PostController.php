@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Redirect;
 use App\Models\Post;
 use App\Models\Usuario;
 
+use App\Http\Requests\PostRequest; //para que se validen los errores del form
+
 
 class PostController extends Controller
 {
@@ -40,7 +42,7 @@ class PostController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(PostRequest $request)
     {
         $post = new post();
         $post->titulo = $request->get('titulo');
@@ -64,8 +66,8 @@ class PostController extends Controller
      */
     public function edit(string $id)
     {
-        return 'Edición de post';
-        // http://127.0.0.1:8000/posts/2/editar
+        $post = Post::findOrFail($id);
+        return view('posts.edit', compact('post'));
     }
 
     /**
@@ -73,7 +75,17 @@ class PostController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'titulo' => 'required|min:5',
+            'contenido' => 'required|min:50',
+        ]);
+
+        $post = Post::findOrFail($id);
+        $post->titulo = $request->titulo;
+        $post->contenido = $request->contenido;
+        $post->save();
+
+        return redirect()->route('posts.show', ['post' => $post->id]);
     }
 
     /**
