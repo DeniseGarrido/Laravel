@@ -27,6 +27,7 @@ Route::get('/posts_ficha/{id?}', function ($id) {
 
 
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\LoginController;
 
 Route::resource('posts', PostController::class)->only(['index', 'show', 'create', 'edit', 'destroy', 'store']);
 Route::get('/nuevo-prueba', [PostController::class, 'nuevoPrueba']);
@@ -45,3 +46,6 @@ Route::get('relacionPrueba', function() {
     $post->save();
     return redirect()->route('post.index');
 });
+
+Route::get('login', [LoginController::class, 'loginForm'])->name('login');
+Route::post('login', [LoginController::class, 'login']);

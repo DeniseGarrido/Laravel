@@ -24,9 +24,11 @@ class UsuarioFactory extends Factory
      */
     public function definition(): array
     {
+        $login = $this->faker->word;
+
         return [
-            'login' => $this->faker->word,
-            'password' => $this->faker->word,
+            'login' => $login,
+            'password' => bcrypt($login),
         ];
     }
 
