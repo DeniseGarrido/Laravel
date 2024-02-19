@@ -20,6 +20,9 @@
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('posts.create') }}" style="color: rgb(184, 184, 184)">Añadir un post</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('logout') }}" style="color: rgb(184, 184, 184)">Log out</a>
+            </li>
             @endif
 
         </ul>

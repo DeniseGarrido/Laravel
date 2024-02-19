@@ -9,6 +9,7 @@ use App\Models\Post;
 use App\Models\Usuario;
 
 use App\Http\Requests\PostRequest; //para que se validen los errores del form
+use Illuminate\Support\Facades\Auth;
 
 
 class PostController extends Controller
@@ -64,9 +65,15 @@ class PostController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
+
+
     public function edit(string $id)
     {
         $post = Post::findOrFail($id);
+
+        if (Auth::id() !== $post->usuario_id) {
+            return redirect()->route('posts.index')->with('error', 'No tienes permisos para editar este post ya que no eres su propietario.');
+        }
         return view('posts.edit', compact('post'));
     }
 
@@ -94,6 +101,9 @@ class PostController extends Controller
     public function destroy(string $id)
     {
         $post = Post::findOrFail($id);
+        if (Auth::id() !== $post->usuario_id) {
+            return redirect()->route('posts.index', $post)->with('error', 'No tienes permisos para borrar este post ya que no eres su propietario.');
+        }
         $post -> delete();
         return redirect()->route('posts.index');
     }
