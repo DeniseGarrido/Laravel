@@ -3,6 +3,8 @@
 namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Validation\ValidationException;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -21,10 +23,18 @@ class Handler extends ExceptionHandler
     /**
      * Register the exception handling callbacks for the application.
      */
-    public function register(): void
+    public function register()
     {
-        $this->reportable(function (Throwable $e) {
-            //
+        $this->renderable(function (Throwable $exception) {
+            if (request()->is('api*')) {
+                if ($exception instanceof ModelNotFoundException) {
+                    return response()->json(['error' => 'Recurso no encontrado'], 404);
+                } elseif ($exception instanceof ValidationException) {
+                    return response()->json(['error' => 'Datos no válidos'], 400);
+                } elseif (isset($exception)) {
+                    return response()->json(['error' => 'Error: ' . $exception->getMessage()], 500);
+                }
+            }
         });
     }
 }
